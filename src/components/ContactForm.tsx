@@ -1,8 +1,11 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { site } from "@/lib/site";
 
 type Status = "idle" | "sending" | "sent" | "error";
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -15,24 +18,78 @@ export function ContactForm() {
 
     const form = event.currentTarget;
     const data = new FormData(form);
+    const company = String(data.get("company") ?? "").trim();
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: data.get("name"),
-        email: data.get("email"),
-        message: data.get("message"),
-        company: data.get("company"),
-      }),
-    });
-
-    if (!response.ok) {
-      const payload = (await response.json().catch(() => null)) as
-        | { error?: string }
-        | null;
-      setError(payload?.error ?? "Could not send the message. Try again.");
+    if (company.length > 0) {
+      setStatus("sent");
+      return;
+    }
+    if (name.length < 1) {
+      setError("Please add your name.");
       setStatus("error");
+      return;
+    }
+    if (!EMAIL.test(email)) {
+      setError("Please add a valid email.");
+      setStatus("error");
+      return;
+    }
+    if (message.length < 4) {
+      setError("Please add a message.");
+      setStatus("error");
+      return;
+    }
+
+    const payload = {
+      name,
+      email,
+      message,
+      _subject: `Message from ${name} — ${site.name}`,
+      _template: "table",
+      _captcha: "false",
+      _replyto: email,
+    };
+
+    try {
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${site.email}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+      const result = (await response.json().catch(() => null)) as {
+        success?: string | boolean;
+        message?: string;
+      } | null;
+
+      const failed =
+        !response.ok ||
+        result?.success === false ||
+        result?.success === "false";
+
+      if (failed) {
+        const hint = result?.message?.toLowerCase() ?? "";
+        if (hint.includes("activat") || hint.includes("confirm")) {
+          setError(
+            "Check Gmail for a confirmation from FormSubmit and click it once. Then send again.",
+          );
+        } else {
+          window.location.href = mailtoLink(name, email, message);
+          return;
+        }
+        setStatus("error");
+        return;
+      }
+    } catch {
+      window.location.href = mailtoLink(name, email, message);
       return;
     }
 
@@ -82,4 +139,10 @@ export function ContactForm() {
       </button>
     </form>
   );
+}
+
+function mailtoLink(name: string, email: string, message: string) {
+  const subject = encodeURIComponent(`Message from ${name}`);
+  const body = encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`);
+  return `mailto:${site.email}?subject=${subject}&body=${body}`;
 }
