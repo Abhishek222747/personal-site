@@ -76,7 +76,12 @@ a:hover {
   padding: 1.1rem 0;
 }
 
-.mark {
+.home-link {
+  grid-column: 1;
+  justify-self: start;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
   grid-column: 2;
   justify-self: center;
   font-family: var(--font-display), Georgia, serif;
@@ -460,9 +465,14 @@ nav a {
   }
 
   .mark,
+  .home-link,
   nav {
     grid-column: 1;
     justify-self: center;
+  }
+
+  .home-link {
+    justify-self: start;
   }
 
   nav {
