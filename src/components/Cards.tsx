@@ -22,7 +22,13 @@ export function WritingRow({ post }: { post: Post }) {
       <h3>
         <Link href={`/writing/${post.slug}`}>{post.title}</Link>
       </h3>
-      {post.summary ? <p>{post.summary}</p> : null}
+      {post.summary ? (
+        <p>
+          <Link className="row-summary" href={`/writing/${post.slug}`}>
+            {post.summary}
+          </Link>
+        </p>
+      ) : null}
     </article>
   );
 }
@@ -43,7 +49,17 @@ export function ProjectCard({ post }: { post: Post }) {
           post.title
         )}
       </h3>
-      {post.summary ? <p>{post.summary}</p> : null}
+      {post.summary ? (
+        post.hasWriteup ? (
+          <p>
+            <Link className="row-summary" href={`/projects/${post.slug}`}>
+              {post.summary}
+            </Link>
+          </p>
+        ) : (
+          <p>{post.summary}</p>
+        )
+      ) : null}
       {post.stack && post.stack.length > 0 ? (
         <p className="stack">{post.stack.join(" · ")}</p>
       ) : null}

@@ -220,8 +220,13 @@ nav a {
 
 .row h3 a,
 .project-card h3 a,
-.area-card h2 a {
+.area-card h2 a,
+.row-summary {
   text-decoration: none;
+}
+
+.row-summary:hover {
+  color: var(--ink);
 }
 
 .row p,
