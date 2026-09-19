@@ -1,0 +1,12 @@
+---
+description: Auto-commit, push, and Vercel-deploy after requested site changes
+alwaysApply: true
+---
+
+# Ship changes without asking
+
+When the user asks for a site change, implement it, then commit, `git push origin main`, and rely on Vercel auto-deploy. Do not ask whether to commit, push, or deploy.
+
+Do not ask the user to approve routine git or terminal commands in chat. Request the permissions the tools need and continue. Only stop and ask if the action is harmful: secrets in git, force-push, deleting the repo, rewriting published history, or destroying production data.
+
+Commit messages stay short and explain why. Never skip hooks. Never change git config.
