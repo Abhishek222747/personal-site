@@ -69,13 +69,28 @@ a:hover {
   padding: 1.1rem 0;
 }
 
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
 .mark {
   font-family: var(--font-display), Georgia, serif;
   font-size: 1.2rem;
   font-weight: 560;
   letter-spacing: -0.03em;
-  text-decoration: none;
   line-height: 1.15;
+}
+
+.home-link {
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.home-link:hover {
+  color: var(--accent);
 }
 
 nav {

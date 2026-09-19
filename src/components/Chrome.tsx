@@ -6,9 +6,12 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="site-wrap header-inner">
-        <Link href="/" className="mark">
-          {site.name}
-        </Link>
+        <div className="brand">
+          <span className="mark">{site.name}</span>
+          <Link href="/" className="home-link">
+            Home
+          </Link>
+        </div>
         <nav aria-label="Primary">
           {site.nav.map((item) => (
             <Link key={item.href} href={item.href}>
