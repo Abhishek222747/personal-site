@@ -82,6 +82,8 @@ a:hover {
   font-size: 0.95rem;
   text-decoration: none;
 }
+
+.mark {
   grid-column: 2;
   justify-self: center;
   font-family: var(--font-display), Georgia, serif;
