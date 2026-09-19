@@ -1,3 +1,10 @@
+---
+title: Birth of Industrialisation
+date: 2026-09-19
+kind: article
+summary: The Industrial Revolution was not one invention. It was many old systems — trade, finance, coal, science — finally reinforcing each other.
+---
+
 Chatgpt seems magical at times, it can feed your curiosity at large. Check this out what I found!
 
 Recently I was understanding How and Why did the Industrial Revolution begin around the 1750s? Why not in 1300 or 1400?

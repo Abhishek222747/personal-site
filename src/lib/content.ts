@@ -41,21 +41,48 @@ function optionalText(value: unknown): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
+function isPostFile(dir: string, file: string): boolean {
+  if (file.startsWith("_") || file.startsWith(".")) return false;
+  const filePath = path.join(dir, file);
+  if (!fs.statSync(filePath).isFile()) return false;
+  return file.endsWith(".md") || !file.includes(".");
+}
+
+function toSlug(file: string): string {
+  return file
+    .replace(/\.md$/i, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function titleFromFile(file: string): string {
+  return file.replace(/\.md$/i, "").replace(/[-_]+/g, " ").trim();
+}
+
 function readDir(subdir: "writing" | "projects"): Post[] {
   const full = path.join(CONTENT_ROOT, subdir);
   if (!fs.existsSync(full)) return [];
 
   return fs
     .readdirSync(full)
-    .filter((file) => file.endsWith(".md") && !file.startsWith("_"))
+    .filter((file) => isPostFile(full, file))
     .map((file) => {
-      const slug = file.replace(/\.md$/, "");
-      const raw = fs.readFileSync(path.join(full, file), "utf8");
+      const filePath = path.join(full, file);
+      const slug = toSlug(file);
+      const raw = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(raw);
       const body = content.trim();
-      const title = String(data.title);
+      const title =
+        data.title != null && String(data.title).trim()
+          ? String(data.title)
+          : titleFromFile(file);
       const summary = String(data.summary ?? "");
       const kind = (data.kind as Kind) ?? "article";
+      const date =
+        data.date != null && String(data.date).trim()
+          ? toIsoDate(data.date)
+          : toIsoDate(fs.statSync(filePath).mtime);
       const manualAreas = parseManualAreas(data.areas);
       const postAreas =
         manualAreas.length > 0
@@ -70,7 +97,7 @@ function readDir(subdir: "writing" | "projects"): Post[] {
       return {
         slug,
         title,
-        date: toIsoDate(data.date),
+        date,
         summary,
         kind,
         areas: postAreas,

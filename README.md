@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Add your own writing
 
-Copy `content/writing/_template.md`, rename it to something like `my-note.md`, and write. You do not set tags by hand. The site reads the title and body and assigns Tech, ML, Sports, or Personal life. Add `areas:` in the file only if you want to override that.
+Copy `content/writing/_template.md`, rename it to something like `my-note.md`, and write. The filename must end in `.md`. You do not set tags by hand. The site reads the title and body and assigns Tech, ML, Sports, or Personal life. Add `areas:` in the file only if you want to override that.
 
 ## Add a tech project
 
