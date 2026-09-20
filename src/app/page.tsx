@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ProjectCard, WritingRow } from "@/components/Cards";
-import { SkillSphere } from "@/components/SkillSphere";
+import { RevolvingTable } from "@/components/RevolvingTable";
 import { getProjects, getWriting } from "@/lib/content";
 import { site } from "@/lib/site";
 
@@ -10,21 +10,16 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero">
-        <div className="site-wrap hero-grid">
-          <div>
-            <p className="kicker">Personal site</p>
-            <h1>{site.oneLiner}</h1>
-            <p className="lede">
-              I share my work and personal stories here. Read the latest notes,
-              or look at the projects.
-            </p>
-            <div className="now-box">
-              <strong>Now</strong>
-              <span>{site.now}</span>
-            </div>
+      <section className="front">
+        <RevolvingTable />
+        <div className="site-wrap front-copy">
+          <p className="kicker">Hello world</p>
+          <h1>I&apos;m Abhishek</h1>
+          <p className="lede">{site.oneLiner}</p>
+          <div className="now-box">
+            <strong>Now</strong>
+            <span>{site.now}</span>
           </div>
-          <SkillSphere />
         </div>
       </section>
 
