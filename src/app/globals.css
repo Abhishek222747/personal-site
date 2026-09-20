@@ -206,21 +206,60 @@ nav a {
   padding: 4rem 0;
 }
 
-.about-split {
-  max-width: 46rem;
+.about-skills {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 1fr);
+  gap: 2.5rem;
+  align-items: center;
 }
 
-.about-split h2,
+.about-skills h2,
 .contact-band h2 {
   font-family: var(--font-display), Georgia, serif;
   font-size: clamp(2rem, 4vw, 3rem);
   margin: 0 0 1.2rem;
 }
 
-.about-split p {
+.about-skills p {
   color: var(--muted);
   line-height: 1.65;
   font-size: 1.08rem;
+}
+
+.skill-cloud {
+  position: relative;
+  width: min(100%, 34rem);
+  height: min(72vw, 34rem);
+  margin-inline: auto;
+}
+
+.skill-cloud span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  white-space: nowrap;
+  color: #9ec0ff;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-cloud {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.9rem;
+    align-content: center;
+  }
+
+  .skill-cloud span {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+    white-space: normal;
+  }
 }
 
 .contact-band {
@@ -568,6 +607,7 @@ nav a {
 }
 
 @media (max-width: 800px) {
+  .about-skills,
   .grid-2,
   .area-grid,
   .footer-inner {

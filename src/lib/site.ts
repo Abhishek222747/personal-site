@@ -19,6 +19,28 @@ export const site = {
     { label: "LinkedIn", href: "https://www.linkedin.com/in/abhishek-kumar-88a6711aa/" },
     { label: "Resume", href: "" },
   ],
+  skills: [
+    "DSA",
+    "Java",
+    "C++",
+    "Python",
+    "Springboot",
+    "Microservices",
+    "MySQL",
+    "MERN stack",
+    "Design Pattern",
+    "LLD",
+    "HLD",
+    "AI + CS Fundamentals",
+    "Agentic AI",
+    "LLMs",
+    "Docker",
+    "Kubernetes",
+    "Deep Infrastructure system design",
+    "Platform Engineering",
+    "Software Engineering",
+    "Product Management",
+  ],
 } as const;
 
 export const areas = [

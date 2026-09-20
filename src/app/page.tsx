@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import { ProjectCard, WritingRow } from "@/components/Cards";
+import { SkillCloud } from "@/components/SkillCloud";
 import { SocialLinks } from "@/components/SocialLinks";
 import { getProjects, getWriting } from "@/lib/content";
 import { publicLinks, site } from "@/lib/site";
@@ -37,7 +38,7 @@ export default function Home() {
       </section>
 
       <section className="home-block" id="about">
-        <div className="site-wrap about-split">
+        <div className="site-wrap about-skills">
           <div>
             <h2>About Me</h2>
             <p>
@@ -58,6 +59,10 @@ export default function Home() {
               DDIA and platform engineering. Currently, I&apos;m Open for
               Full-time opportunity in Software development.
             </p>
+          </div>
+          <div id="skills">
+            <h2>Skills</h2>
+            <SkillCloud skills={site.skills} />
           </div>
         </div>
       </section>
