@@ -38,32 +38,33 @@ export default function Home() {
       </section>
 
       <section className="home-block" id="about">
-        <div className="site-wrap about-skills">
-          <div>
-            <h2>About Me</h2>
-            <p>
-              I&apos;m Abhishek. In tech with more than 2 years of experience as
-              Software Engineer in backend. Skilled software engineer with
-              expertise in collaborative development of scalable systems and
-              distributed architectures developed for UK based Ecommerce
-              company.
-            </p>
-            <p>
-              Experienced in implementing innovative design patterns and
-              delivering high-quality, well-tested code using Java and Python.
-              Proficient in CI/CD pipelines, cloud-based development, and
-              automated testing methodologies.
-            </p>
-            <p>
-              I like to read lot of books from different genre currently reading
-              DDIA and platform engineering. Currently, I&apos;m Open for
-              Full-time opportunity in Software development.
-            </p>
-          </div>
-          <div id="skills">
-            <h2>Skills</h2>
-            <SkillCloud skills={site.skills} />
-          </div>
+        <div className="site-wrap about-copy">
+          <h2>About Me</h2>
+          <p>
+            I&apos;m Abhishek. In tech with more than 2 years of experience as
+            Software Engineer in backend. Skilled software engineer with
+            expertise in collaborative development of scalable systems and
+            distributed architectures developed for UK based Ecommerce
+            company.
+          </p>
+          <p>
+            Experienced in implementing innovative design patterns and
+            delivering high-quality, well-tested code using Java and Python.
+            Proficient in CI/CD pipelines, cloud-based development, and
+            automated testing methodologies.
+          </p>
+          <p>
+            I like to read lot of books from different genre currently reading
+            DDIA and platform engineering. Currently, I&apos;m Open for
+            Full-time opportunity in Software development.
+          </p>
+        </div>
+      </section>
+
+      <section className="home-block" id="skills">
+        <div className="site-wrap">
+          <h2>Skills</h2>
+          <SkillCloud skills={site.skills} />
         </div>
       </section>
 

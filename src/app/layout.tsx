@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { Footer, Header } from "@/components/Chrome";
+import { ScrollTop } from "@/components/ScrollTop";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main>{children}</main>
         <Footer />
+        <ScrollTop />
       </body>
     </html>
   );
