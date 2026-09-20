@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { site } from "@/lib/site";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -10,6 +10,11 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -95,6 +100,10 @@ export function ContactForm() {
 
     form.reset();
     setStatus("sent");
+  }
+
+  if (!ready) {
+    return <div className="contact-form" />;
   }
 
   if (status === "sent") {
