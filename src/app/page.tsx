@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProjectCard, WritingRow } from "@/components/Cards";
+import { SkillSphere } from "@/components/SkillSphere";
 import { getProjects, getWriting } from "@/lib/content";
 import { site } from "@/lib/site";
 
@@ -10,17 +11,20 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div className="site-wrap">
-          <p className="kicker">Personal site</p>
-          <h1>{site.oneLiner}</h1>
-          <p className="lede">
-            I share my work and personal stories here. Read the latest notes,
-            or look at the projects.
-          </p>
-          <div className="now-box">
-            <strong>Now</strong>
-            <span>{site.now}</span>
+        <div className="site-wrap hero-grid">
+          <div>
+            <p className="kicker">Personal site</p>
+            <h1>{site.oneLiner}</h1>
+            <p className="lede">
+              I share my work and personal stories here. Read the latest notes,
+              or look at the projects.
+            </p>
+            <div className="now-box">
+              <strong>Now</strong>
+              <span>{site.now}</span>
+            </div>
           </div>
+          <SkillSphere />
         </div>
       </section>
 
