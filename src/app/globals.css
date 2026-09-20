@@ -57,12 +57,18 @@ a:hover {
 }
 
 .site-header {
-  border-bottom: 1px solid transparent;
-  background: rgba(9, 8, 12, 0.78);
-  backdrop-filter: blur(12px);
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
+  background: transparent;
+  border: 0;
+}
+
+.site-header nav a {
+  color: #e8eef2;
+  text-decoration: none;
 }
 
 .header-inner {
@@ -270,7 +276,7 @@ nav a {
 }
 
 .page-head {
-  padding: 3rem 0 1.5rem;
+  padding: 7rem 0 1.5rem;
 }
 
 .page-head h1 {
@@ -440,7 +446,7 @@ nav a {
 }
 
 .article-head {
-  padding: 3rem 0 1.5rem;
+  padding: 7rem 0 1.5rem;
 }
 
 .article-head h1 {
@@ -571,9 +577,8 @@ nav a {
   }
 
   .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.55rem;
+    align-items: center;
+    gap: 0.7rem;
   }
 
   nav {
