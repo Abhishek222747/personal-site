@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import { ProjectCard, WritingRow } from "@/components/Cards";
-import { RevolvingTable } from "@/components/RevolvingTable";
 import { SocialLinks } from "@/components/SocialLinks";
 import { getProjects, getWriting } from "@/lib/content";
 import { publicLinks, site } from "@/lib/site";
@@ -14,7 +13,16 @@ export default function Home() {
   return (
     <>
       <section className="front">
-        <RevolvingTable />
+        <video
+          className="vidbg"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/hero-poster.png"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
         <div className="front-copy">
           <p className="mhello">HELLO WORLD,</p>
           <div className="front-intro site-wrap">
